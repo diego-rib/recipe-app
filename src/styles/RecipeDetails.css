@@ -1,0 +1,153 @@
+.go-home-button {
+  background-color: rgba(255, 255, 255, 0.747);
+  border: none;
+  border-radius: 10px;
+  left: 5px;
+  position: absolute;
+  top: 5px;
+  z-index: 3000;
+}
+
+.details-img {
+  width: 100%;
+}
+
+.details-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 10px auto;
+  width: 90%;
+}
+
+.title-interactions-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin: 5px auto;
+  width: 90%;
+}
+
+.title-interactions-wrapper div {
+  max-width: 45%;
+}
+
+.details-category {
+  color: #444;
+  font-size: 18px;
+}
+
+.interaction-btn {
+  background: none;
+  border: none;
+  border-radius: 5px;
+  height: 32px;
+  margin: 0 7px;
+  text-decoration: none;
+  width: 42px;
+}
+
+.interaction-btn img {
+  width: 100%;
+}
+
+.details-section-container {
+  margin: 10px auto;
+  width: 95%;
+}
+
+.details-section-title {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.details-section-list {
+  background-color: #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  width: 95%;
+}
+
+.details-section-list p {
+  margin: 2px 0;
+  padding: 0;
+}
+
+.start-recipe-btn {
+  background-color: green;
+  border: none;
+  bottom: 0;
+  color: white;
+  font-size: 22px;
+  left: 0;
+  padding: 5px 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+}
+
+.details-video {
+  margin: 20px auto;
+  max-width: 500px;
+  width: 90%;
+}
+
+.ingredient-done {
+  text-decoration: line-through;
+}
+
+.details-section-list label input {
+  margin-right: 5px;
+}
+
+.finish-recipe-btn {
+  background-color: green;
+  border: 1px solid white;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  margin-left: 45%;
+  padding: 0.675em 1.25em;
+  transform: translateX(-45%);
+}
+
+.finish-recipe-btn:disabled {
+  background-color: #ddd;
+  border: 1px solid #888;
+  color: #888;
+  cursor: not-allowed;
+  font-weight: 400;
+}
+
+.clear-start-recipe-btn {
+  height: 43px;
+}
+
+@media (min-width: 800px) {
+  .start-recipe-btn {
+    bottom: 5%;
+    border-radius: 0 0 12px 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+  }
+  .finish-recipe-btn {
+    margin: 5px 0 20px 50%;
+    font-size: 20px;
+    transform: translateX(-50%);
+    opacity: 89%;
+  }
+  .finish-recipe-btn:hover {
+    filter: contrast(120%);
+    opacity: 100%;
+    transition: .3s;
+  }
+  .details-img {
+    display: block;
+    margin: 0 auto;
+  }
+  .recipe-details-page,
+  .in-progress-recipe-page {
+    margin: 0 auto;
+    width: 85%;
+  }
+}

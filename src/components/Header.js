@@ -5,6 +5,8 @@ import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import Searchbar from './Searchbar';
 
+import '../styles/Header.css';
+
 function Header({ title, showButton }) {
   const [renderSearch, setRenderSearch] = useState(false);
 
@@ -14,7 +16,7 @@ function Header({ title, showButton }) {
 
   return (
     <header>
-      <div className="d-flex justify-content-between">
+      <div className="header-div">
 
         <Link to="/perfil">
           <img
@@ -23,7 +25,7 @@ function Header({ title, showButton }) {
             alt="icone de perfil"
           />
         </Link>
-        <h3 data-testid="page-title">
+        <h3 className="header-title" data-testid="page-title">
           {title}
         </h3>
         {
@@ -32,6 +34,7 @@ function Header({ title, showButton }) {
               <button
                 onClick={ () => disableSearchBar() }
                 type="button"
+                className="header-search-btn"
               >
                 <img
                   data-testid="search-top-btn"
@@ -40,9 +43,8 @@ function Header({ title, showButton }) {
                 />
               </button>
             )
-            : null
+            : <div className="invisible-div" />
         }
-        {renderSearch ? <div /> : null}
       </div>
       {renderSearch ? <Searchbar /> : <div />}
     </header>

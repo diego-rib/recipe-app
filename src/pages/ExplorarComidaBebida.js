@@ -1,11 +1,12 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import MenuInferior from '../components/MenuInferior';
+import Footer from '../components/Footer';
 import BtnBebidas from '../components/BtnBebidas';
 import BtnComidas from '../components/BtnComidas';
 
-function Explorar() {
+export default function Explorar({ history: { push } }) {
   function LocationAtual() {
     const location = useLocation();
     return location.pathname;
@@ -20,11 +21,15 @@ function Explorar() {
           : 'Explorar Comidas' }
       />
       { LocationAtual() === '/explorar/comidas'
-        ? BtnComidas()
-        : BtnBebidas() }
-      <MenuInferior />
+        ? <BtnComidas push={ push } />
+        : <BtnBebidas push={ push } /> }
+      <Footer />
     </div>
   );
 }
 
-export default Explorar;
+Explorar.propTypes = {
+  history: {
+    push: PropTypes.func,
+  },
+}.isRequired;

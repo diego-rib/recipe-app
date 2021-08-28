@@ -9,30 +9,35 @@ function ReadyRecipeList() {
   }
 
   return (
-    <div>
-      <button
-        type="button"
-        data-testid="filter-by-all-btn"
-        onClick={ () => filterRecipe('') }
-      >
-        All
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-food-btn"
-        onClick={ () => filterRecipe('comida') }
-      >
-        Food
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ () => filterRecipe('bebida') }
-      >
-        Drinks
-      </button>
+    <>
+      <div className="done-recipes-btns-container">
+        <button
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ () => filterRecipe('') }
+          className="done-recipes-filter-btn"
+        >
+          All
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-food-btn"
+          onClick={ () => filterRecipe('comida') }
+          className="done-recipes-filter-btn"
+        >
+          Food
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ () => filterRecipe('bebida') }
+          className="done-recipes-filter-btn"
+        >
+          Drinks
+        </button>
+      </div>
       <DoneRecipesRender filter={ typeRecipe } />
-    </div>
+    </>
   );
 }
 

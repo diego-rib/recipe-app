@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export default function BtnComidas() {
+import '../styles/Explorar.css';
+
+export default function BtnComidas({ push }) {
   const [idProduto, setIdProduto] = useState({});
 
   useEffect(() => {
@@ -11,23 +13,35 @@ export default function BtnComidas() {
   });
 
   return (
-    <div>
-      <Link to="/explorar/comidas/ingredientes">
-        <button type="button" data-testid="explore-by-ingredient">
-          Por Ingredientes
-        </button>
-      </Link>
-      <Link to="/explorar/comidas/area">
-        <button type="button" data-testid="explore-by-area">
-          Por Local de Origem
-        </button>
-      </Link>
-      <Link to={ `/comidas/${idProduto.idMeal}` }>
-        <button type="button" data-testid="explore-surprise">
-          Me Surpreenda!
-        </button>
-      </Link>
-
+    <div className="explore-btns-container">
+      <button
+        type="button"
+        data-testid="explore-by-ingredient"
+        className="explorar-btn explore-food-btn medium-font"
+        onClick={ () => push('/explorar/comidas/ingredientes') }
+      >
+        Por Ingredientes
+      </button>
+      <button
+        type="button"
+        data-testid="explore-by-area"
+        className="explorar-btn explore-food-btn medium-font"
+        onClick={ () => push('/explorar/comidas/area') }
+      >
+        Por Local de Origem
+      </button>
+      <button
+        type="button"
+        data-testid="explore-surprise"
+        className="explorar-btn explore-food-btn medium-font"
+        onClick={ () => push(`/comidas/${idProduto.idMeal}`) }
+      >
+        Me Surpreenda!
+      </button>
     </div>
   );
 }
+
+BtnComidas.propTypes = {
+  push: PropTypes.func,
+}.isRequired;

@@ -1,0 +1,18 @@
+.category-btns {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin: 10px auto;
+  width: 95%;
+}
+
+.category-btn {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: #555 1px 2px 2px;
+  color: black;
+  margin-bottom: 10px;
+  padding: 0.1em 0;
+  width: 45%;
+}

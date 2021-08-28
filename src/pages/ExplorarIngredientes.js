@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import Header from '../components/Header';
-import Footer from '../components/MenuInferior';
+import Footer from '../components/Footer';
 import recipesContext from '../provider/recipesContext';
 
 import getImage from '../services/requestImage';
@@ -10,6 +10,8 @@ import {
   fetchIngredients,
   requestByMainIngredient,
 } from '../services/requestIngredients';
+
+import '../styles/Explorar.css';
 
 export default function ExplorarIngredientes() {
   const { setSearchResults, setUpdate } = useContext(recipesContext);
@@ -44,23 +46,27 @@ export default function ExplorarIngredientes() {
     <div>
       { redirect ? redirectPage : null }
       <Header title="Explorar Ingredientes" showButton={ false } />
-      {
-        ingredients.map((ingredient, index) => (
-          <button
-            type="button"
-            key={ index }
-            data-testid={ `${index}-ingredient-card` }
-            onClick={ () => handleClick(ingredient[ingredientKey]) }
-          >
-            <img
-              alt=""
-              src={ getImage(domain, ingredient[ingredientKey]) }
-              data-testid={ `${index}-card-img` }
-            />
-            <p data-testid={ `${index}-card-name` }>{ingredient[ingredientKey]}</p>
-          </button>
-        ))
-      }
+      <div className="explore-btns-container">
+        {
+          ingredients.map((ingredient, index) => (
+            <button
+              type="button"
+              key={ index }
+              data-testid={ `${index}-ingredient-card` }
+              onClick={ () => handleClick(ingredient[ingredientKey]) }
+              className="explorar-btn explore-ingredient"
+            >
+              <img
+                alt=""
+                src={ getImage(domain, ingredient[ingredientKey]) }
+                data-testid={ `${index}-card-img` }
+                className="explore-ingredient-img"
+              />
+              <p data-testid={ `${index}-card-name` }>{ingredient[ingredientKey]}</p>
+            </button>
+          ))
+        }
+      </div>
       <Footer />
     </div>
   );

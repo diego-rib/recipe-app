@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import Header from '../components/Header';
 import MealsCards from '../components/MealsCards';
-import Footer from '../components/MenuInferior';
+import Footer from '../components/Footer';
 
 import { requestAreas, requestByArea } from '../services/requestAreas';
 
@@ -27,6 +27,7 @@ function ExplorarArea() {
       <select
         onChange={ ({ target }) => setCurrentArea(target.value) }
         data-testid="explore-by-area-dropdown"
+        className="form-select explore-area-select"
       >
         <option data-testid="All-option" value="">All</option>
         {

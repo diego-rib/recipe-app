@@ -8,7 +8,8 @@ export default function getIngredients(item) {
     ingredientsKeys = ingredientsKeys.filter((key) => item[key].trim() !== '');
   }
   const ingredients = ingredientsKeys.map((ingredient, index) => {
-    const measure = `- ${item[`strMeasure${index + 1}`]}` || '';
+    const tempMeasure = item[`strMeasure${index + 1}`] || 'null';
+    const measure = tempMeasure === 'null' ? '' : `- ${tempMeasure}`;
     return `${item[ingredient]} ${measure}`;
   });
   return ingredients;

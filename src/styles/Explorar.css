@@ -1,0 +1,74 @@
+.explore-btns-container {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin: 50px auto;
+  width: 88%;
+}
+
+.explorar-btn {
+  background-color: white;
+  border: none;
+  border-radius: 12px;
+  box-shadow: #333 2px 2px 2px;
+  color: white;
+  font-weight: 800;
+  height: 40vw;
+  margin: 10px 0;
+  width: 40vw;
+  word-break: keep-all;
+}
+
+.explore-food-btn {
+  background-color: rgba(251, 146, 25, 0.788);
+}
+
+.explore-drink-btn {
+  background-color: rgba(53, 191, 255, 0.795);
+}
+
+.big-font {
+  font-size: 22px;
+}
+
+.medium-font {
+  font-size: 18px;
+}
+
+.explore-ingredient {
+  align-items: center;
+  color: black;
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: 14px;
+  justify-content: space-between;
+}
+
+.explore-ingredient p {
+  margin-bottom: 5px;
+}
+
+.explore-ingredient-img {
+  width: 70%;
+}
+
+.explore-area-select {
+  display: block;
+  font-size: 18px;
+  margin: 10px auto;
+  padding: 5px;
+  width: 60%;
+}
+
+@media (min-width: 700px) {
+  .explore-btns-container {
+    justify-content: space-around;
+  }
+
+  .explorar-btn {
+    height: fit-content;
+    padding: 30px 0;
+    width: 40%;
+  }
+}

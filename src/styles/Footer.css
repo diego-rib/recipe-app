@@ -1,0 +1,31 @@
+.footer-wrapper {
+  background-color: rgb(218, 141, 0);
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  left: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.footer-wrapper * {
+  background: none;
+  border: none;
+  filter: invert();
+  margin: 2px 0;
+  padding: 0 10px;
+}
+
+.clear-bottom-padding {
+  height: 52px;
+}
+
+@media (min-width: 800px) and (max-width: 1920px) {
+  .footer-wrapper {
+    bottom: 5%;
+    border-radius: 0 0 12px 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+  }
+}

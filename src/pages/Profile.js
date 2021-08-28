@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import MenuInferior from '../components/MenuInferior';
+import Footer from '../components/Footer';
 
-function Profile() {
-  const email = JSON.parse(localStorage.getItem('user')) || { email: '' };
-  function logoutClear() {
-    localStorage.clear();
-  }
+import '../styles/Profile.css';
+
+export default function Profile({ history }) {
+  const data = JSON.parse(localStorage.getItem('user'));
+  const email = data ? data.email : '';
 
   return (
     <div>
@@ -15,49 +15,50 @@ function Profile() {
         showButton={ false }
         title="Perfil"
       />
-      <h3
-        data-testid="profile-email"
-      >
-        {email.email}
-      </h3>
-      <div className="btn-group-vertical">
-        <Link
-          to="/receitas-feitas"
-          data-testid="profile-done-btn"
+      <div className="profile-container">
+        <h3
+          data-testid="profile-email"
+          className="profile-email"
         >
+          {email}
+        </h3>
+        <div className="profile-btns-container">
           <button
             type="button"
+            data-testid="profile-done-btn"
+            onClick={ () => history.push('/receitas-feitas') }
+            className="profile-btn profile-done-btn"
           >
             Receitas Feitas
           </button>
-        </Link>
-        <Link
-          to="/receitas-favoritas"
-          data-testid="profile-favorite-btn"
-        >
           <button
             type="button"
+            data-testid="profile-favorite-btn"
+            onClick={ () => history.push('/receitas-favoritas') }
+            className="profile-btn profile-favorite-btn"
           >
             Receitas Favoritas
           </button>
-        </Link>
-        <Link
-          onClick={ () => logoutClear() }
-          to="/"
-          type="button"
-          data-testid="profile-logout-btn"
-        >
           <button
             type="button"
+            data-testid="profile-logout-btn"
+            onClick={ () => {
+              localStorage.clear();
+              window.location.pathname = '/';
+            } }
+            className="profile-btn profile-quit-btn"
           >
             Sair
           </button>
-
-        </Link>
+        </div>
       </div>
-      <MenuInferior />
+      <Footer />
     </div>
   );
 }
 
-export default Profile;
+Profile.propTypes = {
+  history: {
+    push: PropTypes.func,
+  },
+}.isRequired;

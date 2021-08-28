@@ -13,7 +13,7 @@ export default function RecommendDrink({ items }) {
             key={ index }
           >
             <img
-              alt=""
+              alt={ `Recomendação: ${strDrink} visto de frente` }
               src={ strDrinkThumb }
             />
             <p data-testid={ `${index}-recomendation-title` }>{strDrink}</p>
