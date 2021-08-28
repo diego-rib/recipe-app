@@ -1,0 +1,29 @@
+.login-page {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  height: 80vh;
+  justify-content: center;
+}
+
+.login-title {
+  font-family: Style Script , cursive;
+  font-size: 3.2em;
+  padding-bottom: 30px;
+}
+
+.login-form {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.login-input {
+  border-radius: 5px;
+  font-size: 18px;
+  margin: 10px 0;
+  padding: 5px;
+  width: 100%;
+}

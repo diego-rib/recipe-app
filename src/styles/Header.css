@@ -1,0 +1,30 @@
+.header-div {
+  align-items: flex-start;
+  background-color: rgba(255, 166, 0, 0.904);
+  color: whitesmoke;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-div * {
+  margin: 5px;
+}
+
+.header-title {
+  font-size: 32px;
+  text-align: center;
+}
+
+.header-search-btn {
+  background: none;
+  border: none;
+}
+
+.header-div img {
+  filter: invert();
+}
+
+.invisible-div {
+  flex-shrink: 1;
+  width: 6%;
+}

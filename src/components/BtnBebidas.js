@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export default function BtnBebidas() {
+import '../styles/Explorar.css';
+
+export default function BtnBebidas({ push }) {
   const [idProduto, setIdProduto] = useState({});
 
   useEffect(() => {
@@ -11,18 +13,28 @@ export default function BtnBebidas() {
   });
 
   return (
-    <div>
-      <Link to="/explorar/bebidas/ingredientes">
-        <button type="button" data-testid="explore-by-ingredient">
-          Por Ingredientes
-        </button>
-      </Link>
-      <Link to={ `/bebidas/${idProduto.idDrink}` }>
-        <button type="button" data-testid="explore-surprise">
-          Me Surpreenda!
-        </button>
-      </Link>
+    <div className="explore-btns-container">
+      <button
+        type="button"
+        data-testid="explore-by-ingredient"
+        className="explorar-btn explore-drink-btn medium-font"
+        onClick={ () => push('/explorar/bebidas/ingredientes') }
+      >
+        Por Ingredientes
+      </button>
+      <button
+        type="button"
+        data-testid="explore-surprise"
+        className="explorar-btn explore-drink-btn medium-font"
+        onClick={ () => push(`/bebidas/${idProduto.idDrink}`) }
+      >
+        Me Surpreenda!
+      </button>
 
     </div>
   );
 }
+
+BtnBebidas.propTypes = {
+  push: PropTypes.func,
+}.isRequired;

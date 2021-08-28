@@ -1,0 +1,45 @@
+.profile-container {
+  padding-top: 35%;
+  text-align: center;
+}
+
+.profile-email {
+  font-size: 20px;
+  padding-bottom: 20px;
+}
+
+.profile-btns-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-btn {
+  border: 1px solid #eee;
+  border-radius: 7px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding: 7px;
+  width: 50%;
+}
+
+.profile-done-btn {
+  background-color: rgb(59, 192, 192);
+}
+
+.profile-favorite-btn {
+  background-color: orange;
+}
+
+.profile-quit-btn {
+  background-color: rgb(253, 45, 45);
+}
+
+.profile-btn:hover {
+  margin-bottom: 14px;
+  padding: 10px;
+  transition: 0.25s;
+  width: 55%;
+}

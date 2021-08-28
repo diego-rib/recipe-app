@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import recipesContext from '../provider/recipesContext';
 
+import '../styles/Searchbar.css';
+
 function Searchbar() {
   const [inputRadio, setInputRadio] = useState('');
   const [searchBar, setSearchbar] = useState('');
@@ -14,14 +16,6 @@ function Searchbar() {
     page = 'comidas';
     key = 'meals';
     itemKey = 'idMeal';
-  }
-
-  function selectedInput({ target: { value } }) {
-    setInputRadio(value);
-  }
-
-  function setSearchBarFunction({ target: { value } }) {
-    setSearchbar(value);
   }
 
   function endPoint(value = '') {
@@ -57,53 +51,61 @@ function Searchbar() {
   }
 
   return (
-    <form>
+    <form className="searchbar-wrapper">
       { resultSize === 1 ? (
         <Redirect to={ `/${page}/${searchResults[key][0][itemKey]}` } />
       ) : null }
       <input
-        onChange={ (event) => setSearchBarFunction(event) }
+        onChange={ ({ target }) => setSearchbar(target.value) }
         type="text"
+        className="searchbar-input"
         data-testid="search-input"
       />
-
-      <label htmlFor>
-        <input
-          onClick={ (event) => selectedInput(event) }
-          name="radio-input"
-          id="ingredient-radio-btn"
-          type="radio"
-          data-testid="ingredient-search-radio"
-          value="ingredient"
-        />
-        Ingrediente
-      </label>
-      <label htmlFor>
-        <input
-          onClick={ (event) => selectedInput(event) }
-          name="radio-input"
-          type="radio"
-          data-testid="name-search-radio"
-          value="name"
-        />
-        Name
-      </label>
-      <label htmlFor>
-        <input
-          onClick={ (event) => selectedInput(event) }
-          name="radio-input"
-          type="radio"
-          data-testid="first-letter-search-radio"
-          value="firstWord"
-        />
-        Primeira letra
-      </label>
+      <div className="radio-btns-wrapper">
+        <label htmlFor="radio-input">
+          <input
+            onClick={ ({ target }) => setInputRadio(target.value) }
+            id="radio-input"
+            name="radio-input"
+            type="radio"
+            value="ingredient"
+            data-testid="ingredient-search-radio"
+            className="radio-btn"
+          />
+          Ingrediente
+        </label>
+        <label htmlFor="radio-input-1">
+          <input
+            onClick={ ({ target }) => setInputRadio(target.value) }
+            id="radio-input-1"
+            name="radio-input"
+            type="radio"
+            value="name"
+            data-testid="name-search-radio"
+            className="radio-btn"
+          />
+          Nome
+        </label>
+        <label htmlFor="radio-input-2">
+          <input
+            onClick={ ({ target }) => setInputRadio(target.value) }
+            id="radio-input-2"
+            name="radio-input"
+            type="radio"
+            value="firstWord"
+            data-testid="first-letter-search-radio"
+            className="radio-btn"
+          />
+          Primeira letra
+        </label>
+      </div>
       <button
         onClick={ () => fetchApi() }
         type="button"
+        className="btn search-btn"
         data-testid="exec-search-btn"
       >
-        pesquisar
+        Pesquisar
       </button>
     </form>
   );

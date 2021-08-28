@@ -65,6 +65,7 @@ export function useCurrentMealRecipe(id) {
   function handleDoneRecipe() {
     const isDoneData = localStorage.getItem('doneRecipes');
     const { strArea, strCategory, strMeal, strMealThumb, strTags } = currentMealRecipe;
+    const tags = strTags ? strTags.split(',') : [];
     const localMeal = {
       id,
       type: 'comida',
@@ -74,7 +75,7 @@ export function useCurrentMealRecipe(id) {
       name: strMeal,
       image: strMealThumb,
       doneDate: getCurrentDate(),
-      tags: strTags.split(','),
+      tags,
     };
     let newData = [localMeal];
     if (isDoneData) {

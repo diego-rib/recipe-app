@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
 
+import { RiArrowGoBackFill as GoBackBtn } from 'react-icons/ri';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 
-import '../styles/Detalhes.css';
 import RecommendDrink from '../components/RecommendDrink';
 import {
   checkDoneRecipes,
@@ -16,9 +16,11 @@ import {
 import { handleFavoriteMealBtn } from '../services/favoriteButton';
 import getIngredients from '../services/getIngredients';
 
+import '../styles/RecipeDetails.css';
+
 const copy = require('clipboard-copy');
 
-export default function DetalhesComida({ match }) {
+export default function DetalhesComida({ match, history }) {
   const { id } = match.params;
   const [meal, setMeal] = useState({});
   const [isFavorite, setFavorite] = useState(false);
@@ -64,56 +66,99 @@ export default function DetalhesComida({ match }) {
 
   return (
     loading
-      ? <h1>Carregando....</h1>
+      ? (
+        <div className="spinner-border">
+          <p className="visually-hidden" />
+        </div>
+      )
       : (
-        <div>
+        <div className="recipe-details-page">
+          <button
+            type="button"
+            className="go-home-button"
+            onClick={ () => history.push('/comidas') }
+          >
+            <GoBackBtn size="1.5em" />
+          </button>
           <img
             data-testid="recipe-photo"
             alt=""
             src={ meal.strMealThumb }
-            width="150px"
+            className="details-img"
           />
-          <p data-testid="recipe-title">{meal.strMeal}</p>
-          { copied ? <p>Link copiado!</p> : null }
-          <button
-            type="button"
-            onClick={ handleShareBtn }
+          <p
+            data-testid="recipe-title"
+            className="details-title"
           >
-            <img
-              data-testid="share-btn"
-              alt="Toque para copiar o link da receita para o clipboard"
-              src={ shareIcon }
-            />
-          </button>
-          <button
-            type="button"
-            onClick={ () => {
-              handleFavoriteMealBtn(isFavorite, meal);
-              setFavorite(!isFavorite);
-            } }
-          >
-            <img
-              data-testid="favorite-btn"
-              alt="Toque para favoritar esta receita"
-              src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
-            />
-          </button>
-          <p data-testid="recipe-category">{meal.strCategory}</p>
-          <div>
-            <p>Ingredientes:</p>
-            {
-              ingredients.map((ingredient, index) => (
-                <p
-                  key={ index }
-                  data-testid={ `${index}-ingredient-name-and-measure` }
-                >
-                  {ingredient}
-                </p>
-              ))
-            }
+            {meal.strMeal}
+          </p>
+          <div className="title-interactions-wrapper">
+            <p
+              data-testid="recipe-category"
+              className="details-category"
+            >
+              {meal.strCategory}
+            </p>
+            { copied ? <p className="link-warning">Link copiado!</p> : null }
+            <div>
+              <button
+                type="button"
+                onClick={ handleShareBtn }
+                className="interaction-btn"
+              >
+                <img
+                  data-testid="share-btn"
+                  alt="Toque para copiar o link da receita para o clipboard"
+                  src={ shareIcon }
+                />
+              </button>
+              <button
+                type="button"
+                onClick={ () => {
+                  handleFavoriteMealBtn(isFavorite, meal);
+                  setFavorite(!isFavorite);
+                } }
+                className="interaction-btn"
+              >
+                <img
+                  data-testid="favorite-btn"
+                  alt="Toque para favoritar esta receita"
+                  src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+                />
+              </button>
+            </div>
           </div>
-          <p data-testid="instructions">{meal.strInstructions}</p>
-          <ReactPlayer data-testid="video" url={ meal.strYoutube } />
+          <div className="details-section-container">
+            <p className="details-section-title">Ingredientes:</p>
+            <div className="details-section-list">
+              {
+                ingredients.map((ingredient, index) => (
+                  <p
+                    key={ index }
+                    data-testid={ `${index}-ingredient-name-and-measure` }
+                  >
+                    {ingredient}
+                  </p>
+                ))
+              }
+            </div>
+          </div>
+          <div className="details-section-container">
+            <p className="details-section-title">Instruções</p>
+            <p
+              data-testid="instructions"
+              className="details-section-list"
+            >
+              {meal.strInstructions}
+            </p>
+          </div>
+          <div className="details-video">
+            <ReactPlayer
+              data-testid="video"
+              url={ meal.strYoutube }
+              width="100%"
+            />
+          </div>
           <RecommendDrink items={ recommendations } />
           {
             isDone
@@ -130,6 +175,7 @@ export default function DetalhesComida({ match }) {
                 </Link>
               )
           }
+          <div className="clear-start-recipe-btn" />
         </div>
       )
   );

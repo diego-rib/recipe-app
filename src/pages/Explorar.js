@@ -1,25 +1,39 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import MenuInferior from '../components/MenuInferior';
+import Footer from '../components/Footer';
 
-function Explorar() {
+import '../styles/Explorar.css';
+
+export default function Explorar({ history: { push } }) {
   return (
     <div>
       <Header showButton={ false } title="Explorar" />
-      <Link to="/explorar/comidas">
-        <button type="button" data-testid="explore-food">
+      <div className="explore-btns-container">
+        <button
+          type="button"
+          onClick={ () => push('/explorar/comidas') }
+          data-testid="explore-food"
+          className="explorar-btn explore-food-btn big-font"
+        >
           Explorar Comidas
         </button>
-      </Link>
-      <Link to="/explorar/bebidas">
-        <button type="button" data-testid="explore-drinks">
+        <button
+          type="button"
+          onClick={ () => push('/explorar/bebidas') }
+          data-testid="explore-drinks"
+          className="explorar-btn explore-drink-btn big-font"
+        >
           Explorar Bebidas
         </button>
-      </Link>
-      <MenuInferior />
+      </div>
+      <Footer />
     </div>
   );
 }
 
-export default Explorar;
+Explorar.propTypes = {
+  history: {
+    push: PropTypes.func,
+  },
+}.isRequired;
