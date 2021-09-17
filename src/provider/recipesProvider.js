@@ -64,6 +64,7 @@ function RecipesProvider({ children }) {
     update,
     setUpdate,
     loading,
+    setLoading,
   };
 
   return (

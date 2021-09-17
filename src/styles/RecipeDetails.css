@@ -31,6 +31,17 @@
   max-width: 45%;
 }
 
+@media screen and (max-width: 280px) {
+  .title-interactions-wrapper {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .title-interactions-wrapper div {
+    max-width: fit-content;
+  }
+}
+
 .details-category {
   color: #444;
   font-size: 18px;
@@ -44,6 +55,10 @@
   margin: 0 7px;
   text-decoration: none;
   width: 42px;
+}
+
+.interaction-btn:focus {
+  outline: none;
 }
 
 .interaction-btn img {

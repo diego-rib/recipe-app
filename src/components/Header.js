@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
-import searchIcon from '../images/searchIcon.svg';
-import Searchbar from './Searchbar';
+// import searchIcon from '../images/searchIcon.svg';
+// import Searchbar from './Searchbar';
 
 import '../styles/Header.css';
 
-function Header({ title, showButton }) {
-  const [renderSearch, setRenderSearch] = useState(false);
+// function Header({ title, showButton }) {
+function Header({ title }) {
+  // const [renderSearch, setRenderSearch] = useState(false);
 
-  function disableSearchBar() {
-    setRenderSearch(!renderSearch);
-  }
+  // function disableSearchBar() {
+  //   setRenderSearch(!renderSearch);
+  // }
 
   return (
     <header>
@@ -28,7 +30,8 @@ function Header({ title, showButton }) {
         <h3 className="header-title" data-testid="page-title">
           {title}
         </h3>
-        {
+        <div className="invisible-div" />
+        {/* {
           showButton
             ? (
               <button
@@ -44,9 +47,9 @@ function Header({ title, showButton }) {
               </button>
             )
             : <div className="invisible-div" />
-        }
+        } */}
       </div>
-      {renderSearch ? <Searchbar /> : <div />}
+      {/* {renderSearch ? <Searchbar /> : <div />} */}
     </header>
   );
 }

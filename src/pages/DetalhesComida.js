@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
 
 import { RiArrowGoBackFill as GoBackBtn } from 'react-icons/ri';
+import Loading from '../components/Loading';
+
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
@@ -26,25 +28,33 @@ export default function DetalhesComida({ match, history }) {
   const [isFavorite, setFavorite] = useState(false);
   const [recommendations, setRecommendations] = useState([]);
   const [copied, setCopied] = useState(false);
+  const [loadingRecommends, setLoadingRecommends] = useState(true);
+  const [loading, setLoading] = useState(true);
   const cardLimit = 6;
 
   useEffect(() => {
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+    setLoading(true);
     fetch(url)
       .then((response) => {
         response.json()
           .then((data) => {
             setMeal(data.meals[0]);
             setFavorite(checkFavorite(id));
+            setLoading(false);
           });
       });
   }, [id]);
 
   useEffect(() => {
+    setLoadingRecommends(true);
     fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
       .then((response) => {
         response.json()
-          .then(({ drinks }) => setRecommendations(drinks.slice(0, cardLimit)));
+          .then(({ drinks }) => {
+            setRecommendations(drinks.slice(0, cardLimit));
+            setLoadingRecommends(false);
+          });
       });
   }, []);
 
@@ -59,17 +69,13 @@ export default function DetalhesComida({ match, history }) {
 
   const ingredients = getIngredients(meal);
 
-  const loading = !meal.idMeal && recommendations.length > 0;
-
   const isDone = checkDoneRecipes(id);
   const btnMessage = checkInProgressMeals(id);
 
   return (
     loading
       ? (
-        <div className="spinner-border">
-          <p className="visually-hidden" />
-        </div>
+        <Loading />
       )
       : (
         <div className="recipe-details-page">
@@ -159,7 +165,9 @@ export default function DetalhesComida({ match, history }) {
               width="100%"
             />
           </div>
-          <RecommendDrink items={ recommendations } />
+          { loadingRecommends
+            ? <Loading />
+            : <RecommendDrink items={ recommendations } /> }
           {
             isDone
               ? null
