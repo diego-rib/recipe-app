@@ -23,6 +23,7 @@
   display: flex;
   flex-flow: column;
   justify-content: space-between;
+  height: 100%;
 }
 
 .recipe-title {
@@ -51,7 +52,6 @@
 
 @media screen and (min-width: 251px) and (max-width: 350px) {
   .recipe-container {
-    height: 190px;
     width: 45%;
   }
 
