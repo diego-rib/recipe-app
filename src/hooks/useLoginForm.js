@@ -6,16 +6,18 @@ export default function useLoginForm() {
   // Cuida dos inputs de email e senha
   const [data, setData] = useState({
     email: '',
-    password: '',
+    // password: '',
   });
   const [valid, setValid] = useState(false);
 
   // Checa se os dados são válidos
   useEffect(() => {
-    const { email, password } = data;
+    // const { email, password } = data;
+    const { email } = data;
     const validEmail = /^[A-Za-z0-9._]+@([A-Za-z]+\.)[A-Za-z]{2,3}(\.[A-Za-z]{2})?$/;
-    const validPassword = 6;
-    if (validEmail.test(email) && password.length > validPassword) {
+    // const validPassword = 6;
+    // if (validEmail.test(email) && password.length > validPassword) {
+    if (validEmail.test(email)) {
       setValid(true);
     } else {
       setValid(false);

@@ -1,3 +1,4 @@
+src/pages/TelaPrincipal.js
 src/App.test.js
 src/serviceWorker.js 
 cypress/*
