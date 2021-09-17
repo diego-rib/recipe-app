@@ -22,6 +22,7 @@
   align-items: center;
   display: flex;
   flex-flow: column;
+  justify-content: space-between;
 }
 
 .recipe-title {
@@ -50,7 +51,7 @@
 
 @media screen and (min-width: 251px) and (max-width: 350px) {
   .recipe-container {
-    height: fit-content;
+    height: 190px;
     width: 45%;
   }
 
