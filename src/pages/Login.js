@@ -22,7 +22,7 @@ export default function Login() {
           onChange={ handleChange }
           placeholder="Insira seu email"
         />
-        <input
+        {/* <input
           data-testid="password-input"
           type="password"
           name="password"
@@ -30,7 +30,7 @@ export default function Login() {
           onKeyUp={ handleChange }
           onChange={ handleChange }
           placeholder="Insira sua senha"
-        />
+        /> */}
         <button
           data-testid="login-submit-btn"
           type="button"

@@ -11,10 +11,12 @@ export function useCurrentMealRecipe(id) {
   const [ingredients, setIngredients] = useState([]);
   const [checked, setChecked] = useState([]);
   const [recipeDone, setRecipeDone] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkData = getMealIngredientsChecked(id);
     if (checkData) setChecked(checkData);
+    setLoading(true);
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
       .then((response) => {
         response.json()
@@ -22,6 +24,7 @@ export function useCurrentMealRecipe(id) {
             setCurrentMealRecipe(meals[0]);
             const data = getIngredients(meals[0]);
             setIngredients(data);
+            setLoading(false);
           });
       });
   }, [id]);
@@ -98,7 +101,8 @@ export function useCurrentMealRecipe(id) {
     handleCheck,
     recipeDone,
     setRecipeDone,
-    handleDoneRecipe];
+    handleDoneRecipe,
+    loading];
 }
 
 export function useCurrentDrinkRecipe(id) {
@@ -106,8 +110,10 @@ export function useCurrentDrinkRecipe(id) {
   const [ingredients, setIngredients] = useState([]);
   const [checked, setChecked] = useState([]);
   const [recipeDone, setRecipeDone] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
       .then((response) => {
         response.json()
@@ -115,6 +121,7 @@ export function useCurrentDrinkRecipe(id) {
             setCurrentDrinkRecipe(drinks[0]);
             const data = getIngredients(drinks[0]);
             setIngredients(data);
+            setLoading(false);
           });
       });
   }, [id]);
@@ -195,5 +202,6 @@ export function useCurrentDrinkRecipe(id) {
     handleCheck,
     recipeDone,
     setRecipeDone,
-    handleDoneRecipe];
+    handleDoneRecipe,
+    loading];
 }

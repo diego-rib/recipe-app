@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Loading from '../components/Loading';
 import recipesContext from '../provider/recipesContext';
 
 import getImage from '../services/requestImage';
@@ -14,9 +15,10 @@ import {
 import '../styles/Explorar.css';
 
 export default function ExplorarIngredientes() {
-  const { setSearchResults, setUpdate } = useContext(recipesContext);
+  const { setSearchResults, setUpdate, setLoading } = useContext(recipesContext);
   const [ingredients, setIngredients] = useState([]);
   const [redirect, setRedirect] = useState(false);
+  const [loadingIngredient, setLoadingIngredient] = useState(true);
 
   const { pathname } = window.location;
   let domain = 'cocktail';
@@ -29,15 +31,23 @@ export default function ExplorarIngredientes() {
   }
 
   useEffect(() => {
+    setLoadingIngredient(true);
     fetchIngredients(domain, key)
-      .then((data) => setIngredients(data));
+      .then((data) => {
+        setIngredients(data);
+        setLoadingIngredient(false);
+      });
   }, [domain, key]);
 
   function handleClick(ingredient) {
     setRedirect(true);
     setUpdate(false);
+    setLoading(true);
     requestByMainIngredient(domain, ingredient)
-      .then((data) => setSearchResults(data));
+      .then((data) => {
+        setSearchResults(data);
+        setLoading(false);
+      });
   }
 
   let redirectPage = <Redirect to="/bebidas" />;
@@ -47,8 +57,9 @@ export default function ExplorarIngredientes() {
       { redirect ? redirectPage : null }
       <Header title="Explorar Ingredientes" showButton={ false } />
       <div className="explore-btns-container">
+        { loadingIngredient && <Loading /> }
         {
-          ingredients.map((ingredient, index) => (
+          !loadingIngredient && ingredients.map((ingredient, index) => (
             <button
               type="button"
               key={ index }

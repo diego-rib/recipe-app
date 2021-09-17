@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import MealsCards from '../components/MealsCards';
 import DrinksCards from '../components/DrinksCards';
 import Footer from '../components/Footer';
+import Loading from '../components/Loading';
 
 import recipesContext from '../provider/recipesContext';
 
@@ -16,7 +17,8 @@ export default function TelaPrincipal() {
     searchResults,
     setType,
     setUpdate,
-    update } = useContext(recipesContext);
+    update,
+    loading } = useContext(recipesContext);
 
   const [categories, setCategories] = useState([]);
 
@@ -42,6 +44,12 @@ export default function TelaPrincipal() {
   let data = [];
   if (searchResults.meals) data = searchResults.meals;
   if (searchResults.drinks) data = searchResults.drinks;
+
+  function showCards(cardType, payload) {
+    return cardType === 'meal'
+      ? <MealsCards meals={ payload } cardLimit={ 12 } />
+      : <DrinksCards drinks={ payload } cardLimit={ 12 } />;
+  }
 
   const categoryLimit = 5;
   return (
@@ -77,11 +85,7 @@ export default function TelaPrincipal() {
           ))
         }
       </div>
-      {
-        type === 'meal'
-          ? <MealsCards meals={ data } cardLimit={ 12 } />
-          : <DrinksCards drinks={ data } cardLimit={ 12 } />
-      }
+      { loading ? <Loading /> : showCards(type, data) }
       <Footer />
     </div>
   );

@@ -36,3 +36,25 @@
   padding: 5px;
   width: 100%;
 }
+
+@media screen and (max-width: 250px) {
+  .recipe-container {
+    height: fit-content;
+    width: 90%;
+  }
+
+  .recipe-title {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 251px) and (max-width: 350px) {
+  .recipe-container {
+    height: fit-content;
+    width: 45%;
+  }
+
+  .recipe-title {
+    font-size: 14px;
+  }
+}

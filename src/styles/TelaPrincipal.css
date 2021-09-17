@@ -16,3 +16,15 @@
   padding: 0.1em 0;
   width: 45%;
 }
+
+@media screen and (max-width: 250px) {
+  .category-btn {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 251px) and (max-width: 350px) {
+  .category-btn {
+    font-size: 14px;
+  }
+}

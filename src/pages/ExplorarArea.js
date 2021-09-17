@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import MealsCards from '../components/MealsCards';
 import Footer from '../components/Footer';
+import Loading from '../components/Loading';
 
 import { requestAreas, requestByArea } from '../services/requestAreas';
 
@@ -10,6 +11,7 @@ function ExplorarArea() {
   const [areas, setAreas] = useState([]);
   const [recipes, setRecipes] = useState([]);
   const [currentArea, setCurrentArea] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     requestAreas()
@@ -17,8 +19,12 @@ function ExplorarArea() {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     requestByArea(currentArea)
-      .then((data) => setRecipes(data));
+      .then((data) => {
+        setRecipes(data);
+        setLoading(false);
+      });
   }, [currentArea]);
 
   return (
@@ -42,7 +48,11 @@ function ExplorarArea() {
           ))
         }
       </select>
-      <MealsCards meals={ recipes } />
+      {
+        loading
+          ? <Loading />
+          : <MealsCards meals={ recipes } />
+      }
       <Footer />
     </div>
   );
